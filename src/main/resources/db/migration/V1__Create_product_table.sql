@@ -1,16 +1,16 @@
 -- Product 테이블 생성
 CREATE TABLE product (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL COMMENT '상품명',
-    description TEXT COMMENT '상품 설명',
-    price DECIMAL(19, 2) NOT NULL COMMENT '가격',
-    stock_quantity INT NOT NULL DEFAULT 0 COMMENT '재고 수량',
-    category VARCHAR(100) COMMENT '카테고리',
-    status VARCHAR(50) NOT NULL DEFAULT 'ACTIVE' COMMENT '상품 상태 (ACTIVE, INACTIVE, DELETED)',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성일시',
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시',
-    created_by VARCHAR(100) COMMENT '생성자',
-    updated_by VARCHAR(100) COMMENT '수정자'
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(19, 2) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    category VARCHAR(100),
+    status VARCHAR(50) NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(100),
+    updated_by VARCHAR(100)
 );
 
 -- 인덱스 생성
