@@ -1,3 +1,7 @@
-/gradlew text eol=lf
-*.bat text eol=crlf
-*.jar binary
+# Handle line endings automatically for files detected as text
+# and use CRLF for Windows-style line endings.
+* text=auto eol=crlf
+
+# Explicitly declare files that will always have LF line endings.
+*.sh eol=lf
+
