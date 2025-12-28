@@ -41,7 +41,6 @@ public class Product extends BaseTimeEntity {
     @Column(name = "status", nullable = false)
     private ProductStatus status;
 
-
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductVariant> variants = new ArrayList<>();
 
@@ -56,5 +55,9 @@ public class Product extends BaseTimeEntity {
         this.price = price;
         this.status = status;
     }
-}
 
+    @PrePersist
+    public void prePersist() {
+        this.status = this.status == null ? ProductStatus.ACTIVE : this.status;
+    }
+}

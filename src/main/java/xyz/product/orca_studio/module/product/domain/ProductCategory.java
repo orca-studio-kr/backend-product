@@ -29,10 +29,12 @@ public class ProductCategory {
     @Column(name = "name", nullable = false)
     private String name;
 
-    // 연관관계 편의 메서드
     public void setParent(ProductCategory parent) {
+        if (this.parent == parent) return;
+        if (this.parent != null) this.parent.getChildren().remove(this);
+
         this.parent = parent;
-        if (parent != null) {
+        if (parent != null && !parent.getChildren().contains(this)) {
             parent.getChildren().add(this);
         }
     }
