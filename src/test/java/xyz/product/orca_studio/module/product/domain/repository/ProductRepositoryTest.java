@@ -30,11 +30,10 @@ class ProductRepositoryTest {
         assertThat(products).isNotEmpty();
         assertThat(products.size()).isEqualTo(12);
         
-        // 첫 번째 상품 검증
-        Product firstProduct = products.get(0);
-        assertThat(firstProduct.getName()).isNotNull();
-        assertThat(firstProduct.getPrice()).isNotNull();
-        assertThat(firstProduct.getCreatedBy()).isEqualTo("SYSTEM");
+        // 모든 상품이 필수 필드를 가지고 있어야 함
+        assertThat(products).allMatch(p -> p.getName() != null);
+        assertThat(products).allMatch(p -> p.getPrice() != null);
+        assertThat(products).allMatch(p -> "SYSTEM".equals(p.getCreatedBy()));
     }
     
     @Test
