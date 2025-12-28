@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Table(name = "tbl_product_category")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(exclude = "parent")
 public class ProductCategory {
 
     @Id

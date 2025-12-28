@@ -1,10 +1,7 @@
 package xyz.product.orca_studio.module.product.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -14,6 +11,7 @@ import xyz.product.orca_studio.common.entity.BaseTimeEntity;
 @Getter
 @Table(name = "tbl_product_variant")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(exclude = "product")
 public class ProductVariant extends BaseTimeEntity {
 
     @Id
