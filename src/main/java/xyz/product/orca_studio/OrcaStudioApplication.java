@@ -3,8 +3,10 @@ package xyz.product.orca_studio;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class OrcaStudioApplication {
 
 	public static void main(String[] args) {
@@ -15,5 +17,4 @@ public class OrcaStudioApplication {
 
 		SpringApplication.run(OrcaStudioApplication.class, args);
 	}
-
 }
