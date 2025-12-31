@@ -1,29 +1,5 @@
 services:
-  db:
-    image: mysql:8.0
-    container_name: prod-mysql
-    restart: always
-    command:
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-      - --wait_timeout=28800
-    environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./mysql_data:/var/lib/mysql
-      - ./my-config:/etc/mysql/conf.d
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  backend:
+  backend-product:
     build:
       context: .
       dockerfile: Dockerfile
@@ -44,3 +20,7 @@ services:
       options:
         max-size: "10mb"
         max-file: "5"
+
+networks:
+  network-orca-studio:
+    external: true
