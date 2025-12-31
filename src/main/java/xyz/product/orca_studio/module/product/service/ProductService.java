@@ -1,7 +1,7 @@
 package xyz.product.orca_studio.module.product.service;
 
-import xyz.product.orca_studio.module.product.dto.ProductDetailRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
 
 import java.util.List;
 

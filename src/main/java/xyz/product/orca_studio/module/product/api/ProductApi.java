@@ -1,4 +1,4 @@
-package xyz.product.orca_studio.module.product.controller;
+package xyz.product.orca_studio.module.product.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.product.orca_studio.common.dto.CommRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductDetailRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
 
 import java.util.List;
 

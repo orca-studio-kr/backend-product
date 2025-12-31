@@ -1,4 +1,4 @@
-package xyz.product.orca_studio.module.product.dto;
+package xyz.product.orca_studio.module.product.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

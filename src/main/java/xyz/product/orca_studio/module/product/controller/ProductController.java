@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.product.orca_studio.common.dto.CommRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductDetailRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.api.ProductApi;
+import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
 import xyz.product.orca_studio.module.product.service.ProductService;
 
 import java.util.List;

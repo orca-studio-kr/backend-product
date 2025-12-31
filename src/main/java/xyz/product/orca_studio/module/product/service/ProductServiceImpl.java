@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.product.orca_studio.module.product.domain.Product;
 import xyz.product.orca_studio.module.product.domain.repository.ProductRepository;
-import xyz.product.orca_studio.module.product.dto.ProductDetailRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
 import xyz.product.orca_studio.module.product.mapper.ProductMapper;
 
 import java.util.List;

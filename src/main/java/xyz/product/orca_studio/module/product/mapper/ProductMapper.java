@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import xyz.product.orca_studio.module.product.domain.Product;
 import xyz.product.orca_studio.module.product.domain.ProductImage;
-import xyz.product.orca_studio.module.product.dto.ProductDetailRespDto;
-import xyz.product.orca_studio.module.product.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
+import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
