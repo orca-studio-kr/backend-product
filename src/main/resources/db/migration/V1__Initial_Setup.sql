@@ -6,6 +6,8 @@ CREATE TABLE tbl_product_category
     category_id         BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '카테고리 ID',
     parent_category_id  BIGINT COMMENT '부모 카테고리 ID',
     name                VARCHAR(255) NOT NULL COMMENT '카테고리명',
+    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_parent_category (parent_category_id)
 );
 

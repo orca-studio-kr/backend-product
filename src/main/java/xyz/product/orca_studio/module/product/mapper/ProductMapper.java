@@ -24,6 +24,6 @@ public interface ProductMapper {
     @Mapping(target = "imageUrls", expression = "java(product.getImages().stream().map(ProductImage::getImageUrl).collect(Collectors.toList()))")
     ProductDetailRespDto toDetailDto(Product product);
 
+
     List<ProductSimpleRespDto> toSimpleDtoList(List<Product> products);
 }
-

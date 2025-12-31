@@ -9,4 +9,3 @@ public interface ProductService {
     List<ProductSimpleRespDto> getProducts(Long categoryId);
     ProductDetailRespDto getProduct(Long productId);
 }
-

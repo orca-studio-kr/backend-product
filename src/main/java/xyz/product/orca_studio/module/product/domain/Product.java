@@ -12,10 +12,15 @@ import java.util.List;
 
 import xyz.product.orca_studio.common.entity.BaseTimeEntity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
 @Entity
 @Getter
 @Table(name = "tbl_product")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SQLDelete(sql = "UPDATE tbl_product SET deleted_at = NOW() WHERE product_id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -53,6 +58,37 @@ public class Product extends BaseTimeEntity {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.status = status;
+    }
+
+    public void update(String name, String description, BigDecimal price, ProductCategory category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+    }
+
+    public void updateVariants(List<ProductVariant> newVariants) {
+        this.variants.clear();
+        if (newVariants != null) {
+            newVariants.forEach(variant -> {
+                this.variants.add(variant);
+                variant.setProduct(this);
+            });
+        }
+    }
+
+    public void updateImages(List<ProductImage> newImages) {
+        this.images.clear();
+        if (newImages != null) {
+            newImages.forEach(image -> {
+                this.images.add(image);
+                image.setProduct(this);
+            });
+        }
+    }
+
+    public void changeStatus(ProductStatus status) {
         this.status = status;
     }
 
