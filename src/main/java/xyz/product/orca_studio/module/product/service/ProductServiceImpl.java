@@ -5,12 +5,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.product.orca_studio.module.product.domain.Product;
-import xyz.product.orca_studio.module.product.domain.repository.ProductRepository;
+import xyz.product.orca_studio.module.pricing.api.dto.PriceReqDto;
+import xyz.product.orca_studio.module.pricing.api.dto.PriceRespDto;
+import xyz.product.orca_studio.module.pricing.application.PricingService;
+import xyz.product.orca_studio.module.pricing.mapper.PricingMapper;
 import xyz.product.orca_studio.module.product.api.dto.ProductDetailRespDto;
 import xyz.product.orca_studio.module.product.api.dto.ProductSimpleRespDto;
+import xyz.product.orca_studio.module.product.domain.Product;
+import xyz.product.orca_studio.module.product.domain.repository.ProductRepository;
 import xyz.product.orca_studio.module.product.mapper.ProductMapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Slf4j
@@ -21,6 +26,8 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final PricingService pricingService;
+    private final PricingMapper pricingMapper;
 
     @Override
     public List<ProductSimpleRespDto> getProducts(Long categoryId) {
@@ -38,14 +45,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDetailRespDto getProduct(Long productId) {
+    public ProductDetailRespDto getProduct(Long productId, List<Long> variantIds) {
         log.debug("상품 상세 조회 시작. productId: {}", productId);
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findProductWithDetails(productId)
             .orElseThrow(() -> {
                 log.error("상품을 찾을 수 없습니다. id: {}", productId);
                 return new EntityNotFoundException("상품을 찾을 수 없습니다. id: " + productId);
             });
+
+        PriceRespDto priceRespDto;
+        if (variantIds != null && !variantIds.isEmpty()) {
+            PriceReqDto priceReqDto = new PriceReqDto(productId, variantIds);
+            priceRespDto = pricingService.calculatePrice(priceReqDto);
+        } else {
+            priceRespDto = pricingMapper.toPriceRespDto(product.getPrice(), BigDecimal.ZERO, product.getPrice());
+        }
+
         log.debug("상품 상세 조회 완료. productId: {}", productId);
-        return productMapper.toDetailDto(product);
+        return productMapper.toDetailDto(product, priceRespDto);
     }
 }

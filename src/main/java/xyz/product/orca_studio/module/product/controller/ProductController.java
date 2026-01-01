@@ -28,9 +28,9 @@ public class ProductController implements ProductApi {
     }
 
     @Override
-    public ResponseEntity<CommRespDto<ProductDetailRespDto>> getProduct(Long productId) {
-        log.info("상품 상세 조회 요청. productId: {}", productId);
-        ProductDetailRespDto product = productService.getProduct(productId);
+    public ResponseEntity<CommRespDto<ProductDetailRespDto>> getProduct(Long productId, List<Long> variantIds) {
+        log.info("상품 상세 조회 요청. productId: {}, variantIds: {}", productId, variantIds);
+        ProductDetailRespDto product = productService.getProduct(productId, variantIds);
         log.info("상품 상세 조회 완료. productId: {}", productId);
         return ResponseEntity.ok(CommRespDto.success(product, "상품 상세 조회에 성공했습니다."));
     }

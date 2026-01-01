@@ -7,8 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import xyz.product.orca_studio.common.entity.BaseTimeEntity;
 
@@ -47,10 +48,10 @@ public class Product extends BaseTimeEntity {
     private ProductStatus status;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductVariant> variants = new ArrayList<>();
+    private Set<ProductVariant> variants = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImage> images = new ArrayList<>();
+    private Set<ProductImage> images = new HashSet<>();
 
     @Builder
     public Product(ProductCategory category, String name, String description, BigDecimal price, ProductStatus status) {
@@ -68,23 +69,19 @@ public class Product extends BaseTimeEntity {
         this.category = category;
     }
 
-    public void updateVariants(List<ProductVariant> newVariants) {
+    public void updateVariants(Collection<ProductVariant> newVariants) {
         this.variants.clear();
         if (newVariants != null) {
-            newVariants.forEach(variant -> {
-                this.variants.add(variant);
-                variant.setProduct(this);
-            });
+            this.variants.addAll(newVariants);
+            newVariants.forEach(variant -> variant.setProduct(this));
         }
     }
 
-    public void updateImages(List<ProductImage> newImages) {
+    public void updateImages(Collection<ProductImage> newImages) {
         this.images.clear();
         if (newImages != null) {
-            newImages.forEach(image -> {
-                this.images.add(image);
-                image.setProduct(this);
-            });
+            this.images.addAll(newImages);
+            newImages.forEach(image -> image.setProduct(this));
         }
     }
 
