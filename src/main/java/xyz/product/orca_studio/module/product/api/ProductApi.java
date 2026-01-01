@@ -23,9 +23,10 @@ public interface ProductApi {
     ResponseEntity<CommRespDto<List<ProductSimpleRespDto>>> getProducts(
         @Parameter(description = "카테고리 ID") @RequestParam(required = false) Long categoryId);
 
-    @Operation(summary = "상품 상세 조회", description = "특정 상품의 상세 정보를 조회합니다.")
+    @Operation(summary = "상품 상세 조회", description = "특정 상품의 상세 정보를 조회합니다. 옵션 ID(`variantIds`)를 파라미터로 전달하면, 해당 옵션을 포함한 최종 가격이 함께 계산되어 응답됩니다.")
     @GetMapping("/{productId}")
     ResponseEntity<CommRespDto<ProductDetailRespDto>> getProduct(
-        @Parameter(description = "상품 ID") @PathVariable Long productId);
+        @Parameter(description = "상품 ID") @PathVariable Long productId,
+        @Parameter(description = "선택된 옵션 ID 목록") @RequestParam(required = false) List<Long> variantIds);
 }
 

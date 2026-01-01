@@ -70,7 +70,7 @@ public class ProductEventHandler {
                     .division(ImageDivision.fromCode(imageInfo.imageDivision()))
                     .product(product)
                     .build())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toSet()));
         }
 
         if (variants != null) {
@@ -82,7 +82,7 @@ public class ProductEventHandler {
                     .additionalPrice(variantInfo.additionalPrice())
                     .product(product)
                     .build())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toSet()));
         }
     }
 }

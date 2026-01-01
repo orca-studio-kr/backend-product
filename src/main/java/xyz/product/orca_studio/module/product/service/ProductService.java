@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductSimpleRespDto> getProducts(Long categoryId);
-    ProductDetailRespDto getProduct(Long productId);
+    ProductDetailRespDto getProduct(Long productId, List<Long> variantIds);
 }
