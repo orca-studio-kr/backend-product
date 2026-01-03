@@ -3,6 +3,7 @@ package xyz.product.orca_studio.module.product.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.product.orca_studio.module.pricing.api.dto.PriceReqDto;
@@ -30,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
     private final PricingMapper pricingMapper;
 
     @Override
+    @Cacheable(value = "products", key = "'category::' + (#categoryId != null ? #categoryId : 'all')")
     public List<ProductSimpleRespDto> getProducts(Long categoryId) {
         log.debug("상품 목록 조회 시작. categoryId: {}", categoryId);
         List<Product> products;
@@ -45,6 +47,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "product", key = "'id::' + #productId + '::variants::' + (#variantIds != null ? #variantIds.toString() : 'none')")
     public ProductDetailRespDto getProduct(Long productId, List<Long> variantIds) {
         log.debug("상품 상세 조회 시작. productId: {}", productId);
         Product product = productRepository.findProductWithDetails(productId)
