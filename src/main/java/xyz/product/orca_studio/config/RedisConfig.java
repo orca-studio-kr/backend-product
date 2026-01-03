@@ -24,21 +24,6 @@ import java.time.Duration;
 public class RedisConfig {
 
     @Bean
-    public ObjectMapper redisObjectMapper() {
-        PolymorphicTypeValidator typeValidator = BasicPolymorphicTypeValidator
-            .builder()
-            .allowIfBaseType(Object.class)
-            .build();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
-
-        return objectMapper;
-    }
-
-    @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisSerializer<Object> serializer = RedisSerializer.json();
 
