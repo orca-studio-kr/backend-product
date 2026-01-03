@@ -1,5 +1,6 @@
 package xyz.product.orca_studio;
 
+import com.redis.testcontainers.RedisContainer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
@@ -12,5 +13,13 @@ class TestcontainersConfiguration {
     @ServiceConnection
     MySQLContainer<?> mysqlContainer() {
         return new MySQLContainer<>(DockerImageName.parse("mysql:8.0"));
+    }
+
+    @Bean
+    @ServiceConnection
+    @SuppressWarnings("resource")
+    RedisContainer redisContainer() {
+        return new RedisContainer(DockerImageName.parse("redis:7-alpine"))
+            .withExposedPorts(6379);
     }
 }
