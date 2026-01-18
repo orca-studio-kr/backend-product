@@ -23,3 +23,7 @@ spring:
     redis:
       host: ${CACHE_HOST}
       port: ${CACHE_PORT}
+
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URI}
+

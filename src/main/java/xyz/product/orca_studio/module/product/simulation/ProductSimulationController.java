@@ -15,7 +15,6 @@ import xyz.product.orca_studio.module.product.simulation.dto.UpdateProductReques
 @RestController
 @RequestMapping("/api/simulate/products")
 @RequiredArgsConstructor
-// This controller should ideally be active only on 'dev' or 'simulation' profiles.
 public class ProductSimulationController {
 
     private final ApplicationEventPublisher eventPublisher;
