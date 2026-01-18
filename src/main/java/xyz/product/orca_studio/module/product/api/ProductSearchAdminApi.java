@@ -29,7 +29,7 @@ public class ProductSearchAdminApi {
         log.info("전체 상품 재인덱싱 요청");
         try {
             productBulkIndexingService.reindexAllAsync();
-            return ResponseEntity.ok(CommRespDto.success("전체 상품 재인덱싱이 시작되었습니다."));
+            return ResponseEntity.ok(CommRespDto.success(null, "전체 상품 재인덱싱에 성공했습니다."));
         } catch (Exception e) {
             log.error("전체 재인덱싱 요청 실패", e);
             return ResponseEntity.internalServerError()
@@ -43,7 +43,7 @@ public class ProductSearchAdminApi {
         log.info("카테고리별 상품 재인덱싱 요청. categoryId: {}", categoryId);
         try {
             productBulkIndexingService.reindexByCategory(categoryId);
-            return ResponseEntity.ok(CommRespDto.success("카테고리 상품 재인덱싱이 완료되었습니다."));
+            return ResponseEntity.ok(CommRespDto.success(null, "카테고리 상품 재인덱싱에 성공했습니다."));
         } catch (Exception e) {
             log.error("카테고리별 재인덱싱 실패. categoryId: {}", categoryId, e);
             return ResponseEntity.internalServerError()
@@ -79,7 +79,7 @@ public class ProductSearchAdminApi {
         log.info("상품 재인덱싱 요청. productId: {}", productId);
         try {
             // Product 조회 후 인덱싱 로직은 서비스 레이어에서 처리
-            return ResponseEntity.ok(CommRespDto.success("상품 재인덱싱이 완료되었습니다."));
+            return ResponseEntity.ok(CommRespDto.success(null, "상품 재인덱싱에 성공했습니다."));
         } catch (Exception e) {
             log.error("상품 재인덱싱 실패. productId: {}", productId, e);
             return ResponseEntity.internalServerError()
